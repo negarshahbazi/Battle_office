@@ -40,6 +40,7 @@ class AddressBilingType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => AddressBiling::class,
+            'allow_extra_field' => true,
         ]);
     }
 }

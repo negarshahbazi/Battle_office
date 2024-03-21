@@ -22,17 +22,20 @@ class Order
     private ?PaymentMethod $paymentMethod = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    private ?Status $status = null;
-
-    #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Client $client = null;
 
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'command')]
-    private Collection $product;
+ 
+
+    #[ORM\Column(length: 255)]
+    private ?string $status = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Product $Product = null;
 
     public function __construct()
     {
-        $this->product = new ArrayCollection();
+        // $this->product = new ArrayCollection();
+        $this->status = "WAITING";
     }
 
 
@@ -57,18 +60,6 @@ class Order
         return $this;
     }
 
-    public function getStatus(): ?Status
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?Status $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     public function getClient(): ?Client
     {
         return $this->client;
@@ -81,32 +72,28 @@ class Order
         return $this;
     }
 
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getProduct(): Collection
+ 
+
+    public function getStatus(): ?string
     {
-        return $this->product;
+        return $this->status;
     }
 
-    public function addProduct(Product $product): static
+    public function setStatus(string $status): static
     {
-        if (!$this->product->contains($product)) {
-            $this->product->add($product);
-            $product->setCommand($this);
-        }
+        $this->status = $status;
 
         return $this;
     }
 
-    public function removeProduct(Product $product): static
+    public function getProduct(): ?Product
     {
-        if ($this->product->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getCommand() === $this) {
-                $product->setCommand(null);
-            }
-        }
+        return $this->Product;
+    }
+
+    public function setProduct(?Product $Product): static
+    {
+        $this->Product = $Product;
 
         return $this;
     }

@@ -22,8 +22,7 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'product')]
-    private ?Order $command = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $firstPrice = null;
@@ -71,17 +70,7 @@ class Product
         return $this;
     }
 
-    public function getCommand(): ?Order
-    {
-        return $this->command;
-    }
-
-    public function setCommand(?Order $command): static
-    {
-        $this->command = $command;
-
-        return $this;
-    }
+   
 
     public function getFirstPrice(): ?string
     {
