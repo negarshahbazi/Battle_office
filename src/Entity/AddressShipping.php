@@ -31,10 +31,6 @@ class AddressShipping
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
-
-
-
-
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 

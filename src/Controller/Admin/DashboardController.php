@@ -50,6 +50,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('photo manager', 'fas fa-list', Photo::class);
         yield MenuItem::linkToCrud('product manager', 'fas fa-list', Product::class);
         yield MenuItem::linkToCrud('payment method manager', 'fas fa-list', PaymentMethod::class);
-        yield MenuItem::linkToCrud('status manager', 'fas fa-list', Status::class);
+        // yield MenuItem::linkToCrud('status manager', 'fas fa-list', Status::class);
     }
 }

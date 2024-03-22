@@ -29,8 +29,12 @@ class Order
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Product $Product = null;
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Product $product = null;
+
+   
+
+ 
 
     public function __construct()
     {
@@ -88,15 +92,19 @@ class Order
 
     public function getProduct(): ?Product
     {
-        return $this->Product;
+        return $this->product;
     }
 
-    public function setProduct(?Product $Product): static
+    public function setProduct(?Product $product): static
     {
-        $this->Product = $Product;
+        $this->product = $product;
 
         return $this;
     }
+
+ 
+
+   
 
   
 

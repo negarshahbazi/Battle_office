@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     stripe_key: '%env(STRIPE_SECRET_KEY)%'
+    paypalClientId: '%env(PAYPAL_CLIENT_ID)%'
+    paypalSecret: '%env(PAYPAL_SECRET)%'
 services:
     # default configuration for services in *this* file
     _defaults:
