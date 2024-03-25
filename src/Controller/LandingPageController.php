@@ -231,7 +231,7 @@ class LandingPageController extends AbstractController
                         "value" =>  $order->getProduct()->getPrice() // Montant à payer
                     ]
                 ]],
-                'success_url' => $YOUR_DOMAIN . '/confirmation',
+                'success_url' => $YOUR_DOMAIN . '/confirmation'.$order->getId(),
                 'cancel_url' => $YOUR_DOMAIN . '/',
             ];
             $response = $client->execute($request);
@@ -264,7 +264,7 @@ class LandingPageController extends AbstractController
 
 
 
-    #[Route('/confirmation', name: 'confirmation')]
+    #[Route('/confirmation/{id}', name: 'confirmation')]
     public function confirmation(Request $request): Response
     {
 
